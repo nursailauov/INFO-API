@@ -108,7 +108,7 @@ def apis(idd, region):
     except requests.exceptions.RequestException as e:
         print(f"API request to {endpoint} failed: {e}")
         raise
-@app.route('/ajay-info', methods=['GET'])
+@app.route('/get', methods=['GET'])
 def get_player_info():
     try:
         uid = request.args.get('uid')
@@ -130,7 +130,7 @@ def get_player_info():
         message = AccountPersonalShowInfo()
         message.ParseFromString(bytes.fromhex(api_response)) 
         result = MessageToDict(message)
-        result['Owners'] = ['agajayofficial']
+        result['Owners'] = ['nur_sailauov']
         return jsonify(result)
     except ValueError:
         return jsonify({"error": "Invalid UID format"}), 400
