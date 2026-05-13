@@ -26,7 +26,7 @@ def get_jwt_token_sync(region):
     global jwt_token
     endpoints = {
         "IND": "https://free-fire-official-jwt-token-api.vercel.app/token?uid={uid}&password={password}",
-        "CIS": "https://jwt-henna.vercel.app/guest?uid={uid}&password={password}",
+        "CIS": "https://jwt-henna.vercel.app/guest?uid=4805990292&password=AYANA_BYSTARGMR_ugCA8RBC",
         "US": "https://free-fire-official-jwt-token-api.vercel.app/token?uid={uid}&password={password}",
         "SAC": "https://free-fire-official-jwt-token-api.vercel.app/token?uid={uid}&password={password}",
         "NA": "https://free-fire-official-jwt-token-api.vercel.app/token?uid={uid}&password={password}",
