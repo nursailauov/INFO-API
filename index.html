@@ -593,7 +593,7 @@
     <div class="container">
         <div class="header">
             <h1>🔥 Free Fire Player Lookup</h1>
-            <p>Complete player information using mafu-info & banner API</p>
+            <p>Complete player information using this INFO API</p>
         </div>
 
         <div class="search-box">
@@ -760,7 +760,7 @@
         </div>
 
         <div class="footer">
-            <p>Powered by mafu-info API & mafu-banner-api | Free Fire Complete Player Lookup Tool</p>
+            <p>Powered by INFO API | Free Fire Complete Player Lookup Tool</p>
         </div>
     </div>
 
@@ -774,6 +774,7 @@
 
         async function searchPlayer() {
             const uid = document.getElementById('uidInput').value.trim();
+            const region = 'CIS';
             const searchBtn = document.getElementById('searchBtn');
             const loading = document.getElementById('loading');
             const result = document.getElementById('result');
@@ -801,10 +802,12 @@
             loading.classList.add('active');
 
             try {
-                // Fetch both APIs
+                const infoUrl = `/get?uid=${encodeURIComponent(uid)}&region=${encodeURIComponent(region)}`;
+
+                // Fetch local INFO API plus optional external banner API.
                 const [infoResponse, bannerResponse] = await Promise.allSettled([
-                    fetch(`https://mafuuuu-info-api.vercel.app/mafu-info?uid=${uid}`),
-                    fetch(`https://mafuuu-banner-api.onrender.com/profile?uid=${uid}`)
+                    fetch(infoUrl),
+                    fetch(`https://mafuuu-banner-api.onrender.com/profile?uid=${encodeURIComponent(uid)}`)
                 ]);
 
                 loading.classList.remove('active');
