@@ -2,12 +2,14 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad
 import binascii
 import requests
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_file
 from data_pb2 import AccountPersonalShowInfo
 from google.protobuf.json_format import MessageToDict
 import uid_generator_pb2
 import threading
 import time
+from pathlib import Path
+
 app = Flask(__name__)
 jwt_token = None
 jwt_lock = threading.Lock()
@@ -108,6 +110,12 @@ def apis(idd, region):
     except requests.exceptions.RequestException as e:
         print(f"API request to {endpoint} failed: {e}")
         raise
+
+@app.route('/', methods=['GET'])
+@app.route('/index.html', methods=['GET'])
+def index():
+    return send_file(Path(__file__).with_name('index.html'))
+
 @app.route('/get', methods=['GET'])
 def get_player_info():
     try:
